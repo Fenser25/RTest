@@ -1,9 +1,10 @@
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QTimer, QTime
 from PyQt5.QtWidgets import (
        QApplication, QWidget,
        QHBoxLayout, QVBoxLayout,
        QGroupBox, QRadioButton,
        QPushButton, QLabel, QListWidget, QLineEdit)
+from PyQt5.QtGui import QFont
 
 win_x, win_y = 200, 100
 win_width, win_height = 1000, 600
@@ -15,7 +16,7 @@ txt_instruction = ('Данное приложение позволит вам с
                    'У испытуемого, находящегося в положении лежа на спине в течение 5 мин, определяют частоту пульса за 15 секунд;\n'
                    'затем в течение 45 секунд испытуемый выполняет 30 приседаний.\n'
                    'После окончания нагрузки испытуемый ложится, и у него вновь подсчитывается число пульсаций за первые 15 секунд,\n'
-                   'а потом — за последние 15 секунд первой минуты периода восстановления.\n'
+                   'а потом — за последние 15 секунд первой минуты периода восстановления.\n'   
                    'Важно! Если в процессе проведения испытания вы почувствуете себя плохо (появится головокружение, шум в\n'
                    'ушах, сильная одышка и др.), то тест необходимо прервать и обратиться к врачу.' )
 txt_title = 'Здоровье'
@@ -50,6 +51,14 @@ def win2show():
     win2.show()
 
 
+def timer1():
+    global timer___1
+    timer___1 = QTimer()
+    global time
+    time = QTime(0, 0, 15)
+    timer___1.timeout.connect(timer1event)
+    timer___1.start(1000)
+
 
 mainline = QVBoxLayout()
 text1 = QLabel(txt_hello)
@@ -74,7 +83,8 @@ fio = QLineEdit(txt_hintname)
 text22 = QLabel(txt_age)
 age = QLineEdit(txt_hinttest1)
 text32 = QLabel(txt_hinttest1)
-test1startbttn = QPushButton(txt_starttest1)
+test1startbttn = QPushButton(txt_starttest1) #начинает тест 1
+test1startbttn.clicked.connect(timer1)
 test1result = QLineEdit(txt_hinttest2)
 text42 = QLabel(txt_test2)
 test2startbttn = QPushButton(txt_starttest2)
@@ -82,9 +92,25 @@ text52 = QLabel(txt_test3)
 test3startbttn = QPushButton(txt_starttest3)
 test3result1 = QLineEdit(txt_hinttest2)
 test3result2 = QLineEdit(txt_hinttest3)
+
+
 mainline2 = QVBoxLayout()
 mainline22 = QVBoxLayout() #для таймера
 mainlineh = QHBoxLayout()
+
+def timer1event():
+    global time
+    time = time.addSecs(-1)
+    timer.setText(time.toString('hh.mm.ss'))
+    timer.setFont(QFont('Times', 36, QFont.bold))
+    if time.toString('hh.mm.ss') == '00:00:00':
+        timer___1.stop()
+
+
+
+
+
+
 timer = QLabel(txt_timer, alignment= Qt.AlignCenter)
 checkresults = QPushButton('Отправить результаты')
 mainline22.addWidget(timer,alignment= Qt.AlignCenter)
