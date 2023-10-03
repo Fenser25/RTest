@@ -101,9 +101,9 @@ mainlineh = QHBoxLayout()
 def timer1event():
     global time
     time = time.addSecs(-1)
-    timer.setText(time.toString('hh.mm.ss'))
-    timer.setFont(QFont('Times', 36, QFont.bold))
-    if time.toString('hh.mm.ss') == '00:00:00':
+    timer.setText(time.toString('hh:mm:ss'))
+    timer.setFont(QFont('Times', 36, QFont.Bold))
+    if time.toString('hh:mm:ss') == '00:00:00':
         timer___1.stop()
 
 
