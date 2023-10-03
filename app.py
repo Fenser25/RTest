@@ -60,6 +60,54 @@ def timer1():
     timer___1.start(1000)
 
 
+
+def timer3event():
+    global time3
+    time3 = time3.addSecs(-1)
+    timer.setText(time3.toString('hh:mm:ss'))
+    timer.setFont(QFont('Times', 36, QFont.Bold))
+    a1 = time3.toString('hh:mm:ss')
+    
+    if 45 < int(a1[6:8]) <= 60:
+        timer.setStyleSheet('color: rgb(0,255,0)')
+    if 15 < int(time3.toString('hh:mm:ss')[6:8]) <= 45:
+        timer.setStyleSheet('color: rgb(0,0,0)')
+    if 0 < int(time3.toString('hh:mm:ss')[6:8]) <= 15:
+        timer.setStyleSheet('color: rgb(0,255,0)')
+    if time3.toString('hh:mm:ss') == '00:00:00':
+        timer___1.stop()
+    
+
+def timer2event():
+    global time2
+    time2 = time2.addSecs(-1)
+    timer.setText(time2.toString('hh:mm:ss')[6:8])
+    timer.setFont(QFont('Times', 36, QFont.Bold))
+    if time2.toString('hh:mm:ss') == '00:00:00':
+        timer___1.stop()
+        
+
+   
+
+def timer2():
+    global timer___1
+    timer___1 = QTimer()
+    global time2
+    time2 = QTime(0, 0, 45)
+    timer___1.timeout.connect(timer2event)
+    timer___1.start(1000)
+
+def timer3():
+    global timer___1
+    timer___1 = QTimer()
+    global time3
+    time3 = QTime(0, 0, 60)
+    timer___1.timeout.connect(timer3event)
+    timer___1.start(1000)
+
+
+
+
 mainline = QVBoxLayout()
 text1 = QLabel(txt_hello)
 text2 = QLabel(txt_instruction)
@@ -88,8 +136,10 @@ test1startbttn.clicked.connect(timer1)
 test1result = QLineEdit(txt_hinttest2)
 text42 = QLabel(txt_test2)
 test2startbttn = QPushButton(txt_starttest2)
+test2startbttn.clicked.connect(timer2)
 text52 = QLabel(txt_test3)
 test3startbttn = QPushButton(txt_starttest3)
+test3startbttn.clicked.connect(timer3)
 test3result1 = QLineEdit(txt_hinttest2)
 test3result2 = QLineEdit(txt_hinttest3)
 
@@ -105,6 +155,8 @@ def timer1event():
     timer.setFont(QFont('Times', 36, QFont.Bold))
     if time.toString('hh:mm:ss') == '00:00:00':
         timer___1.stop()
+
+
 
 
 
