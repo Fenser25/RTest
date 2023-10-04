@@ -42,6 +42,13 @@ txt_index = 'Индекс Руфье: '
 txt_workheart = 'Работоспособность сердца: '
 
 
+txt_res1 = "низкая. Срочно обратитесь к врачу!"
+txt_res2 = "удовлетворительная. Обратитесь к врачу!"
+txt_res3 = "средняя. Возможно, стоит дополнительно обследоваться у врача."
+txt_res4 = "выше среднего"
+txt_res5 = "высокая"
+
+
 app = QApplication([])
 
 win1 = QWidget()
@@ -148,7 +155,7 @@ text12 = QLabel(txt_name)
 fio = QLineEdit(txt_hintname)
 text22 = QLabel(txt_age)
 age1 = QLineEdit(txt_hinttest1)
-text32 = QLabel(txt_hinttest1)
+text32 = QLabel(txt_test1)
 test1startbttn = QPushButton(txt_starttest1) #начинает тест 1
 test1startbttn.clicked.connect(timer1)
 test1result = QLineEdit(txt_hinttest2)
@@ -174,7 +181,7 @@ mainline22.addWidget(timer,alignment= Qt.AlignCenter)
 mainline2.addWidget(text12, alignment= Qt.AlignLeft)
 mainline2.addWidget(fio, alignment= Qt.AlignLeft)
 mainline2.addWidget(text22, alignment= Qt.AlignLeft)
-mainline2.addWidget(age, alignment= Qt.AlignLeft)
+mainline2.addWidget(age1, alignment= Qt.AlignLeft)
 mainline2.addWidget(text32, alignment= Qt.AlignLeft)
 mainline2.addWidget(test1startbttn, alignment= Qt.AlignLeft)
 mainline2.addWidget(test1result, alignment= Qt.AlignLeft)
@@ -190,16 +197,18 @@ mainlineh.addLayout(mainline22)
 
 win2.setLayout(mainlineh)
 
-age = age1.text() 
+age = int(age1.text()) 
 res1 = int(test1result.text())
 res2 = int(test3result1.text())
 res3 = int(test3result2.text())
-index = (4*(res1 + res2 + res3) - 200)/10
-def results123():
+
+def results123(age, res1, res2, res3):
+       global index
+       index = (4*(res1 + res2 + res3) - 200)/10
        if age < 7:
            index = 0
            return "нет данных для такого возраста"
-       index = (4 * (int(t1) + int(t2) + int(t3)) - 200) / 10
+       
        if age == 7 or age == 8:
            if index >= 21:
                return txt_res1
@@ -255,6 +264,19 @@ def results123():
                return txt_res4
            else:
                return txt_res5
+
+win3text2 = QLabel(str(txt_index))
+win3text3 = QLabel(str(txt_workheart))
+final_results = results123(age, res1, res2, res3)
+workheart = QLabel(str(final_results))
+index_text = QLabel(str(index))
+win3line.addWidget(win3text2, alignment= Qt.AlignHCenter)
+win3line.addWidget(index_text, alignment= Qt.AlignHCenter)
+win3line.addWidget(win3text3, alignment= Qt.AlignHCenter)
+win3line.addWidget(workheart, alignment= Qt.AlignHCenter)
+
+
+ 
 
 
 
