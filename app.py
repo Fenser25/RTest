@@ -59,35 +59,13 @@ def timer1():
     timer___1.timeout.connect(timer1event)
     timer___1.start(1000)
 
-
-
-def timer3event():
-    global time3
-    time3 = time3.addSecs(-1)
-    timer.setText(time3.toString('hh:mm:ss'))
+def timer1event():
+    global time
+    time = time.addSecs(-1)
+    timer.setText(time.toString('hh:mm:ss'))
     timer.setFont(QFont('Times', 36, QFont.Bold))
-    a1 = time3.toString('hh:mm:ss')
-    
-    if 45 < int(a1[6:8]) <= 60:
-        timer.setStyleSheet('color: rgb(0,255,0)')
-    if 15 < int(time3.toString('hh:mm:ss')[6:8]) <= 45:
-        timer.setStyleSheet('color: rgb(0,0,0)')
-    if 0 < int(time3.toString('hh:mm:ss')[6:8]) <= 15:
-        timer.setStyleSheet('color: rgb(0,255,0)')
-    if time3.toString('hh:mm:ss') == '00:00:00':
-        timer___1.stop()
-    
-
-def timer2event():
-    global time2
-    time2 = time2.addSecs(-1)
-    timer.setText(time2.toString('hh:mm:ss')[6:8])
-    timer.setFont(QFont('Times', 36, QFont.Bold))
-    if time2.toString('hh:mm:ss') == '00:00:00':
-        timer___1.stop()
-        
-
-   
+    if time.toString('hh:mm:ss') == '00:00:00':
+        timer___1.stop()        
 
 def timer2():
     global timer___1
@@ -97,14 +75,37 @@ def timer2():
     timer___1.timeout.connect(timer2event)
     timer___1.start(1000)
 
+def timer2event():
+    global time2
+    time2 = time2.addSecs(-1)
+    timer.setText(time2.toString('hh:mm:ss')[6:8])
+    timer.setFont(QFont('Times', 36, QFont.Bold))
+    if time2.toString('hh:mm:ss') == '00:00:00':
+        timer___1.stop()
+
 def timer3():
     global timer___1
     timer___1 = QTimer()
     global time3
-    time3 = QTime(0, 0, 60)
+    time3 = QTime(0, 0, 59)
     timer___1.timeout.connect(timer3event)
     timer___1.start(1000)
 
+def timer3event():
+    global time3
+    time3 = time3.addSecs(-1)
+    timer.setText(time3.toString('hh:mm:ss'))
+    timer.setFont(QFont('Times', 36, QFont.Bold))
+    a1 = time3.toString('hh:mm:ss')
+    
+    if 45 < int(a1[6:8]) <= 59:
+        timer.setStyleSheet('color: rgb(0,255,0)')
+    if 15 < int(time3.toString('hh:mm:ss')[6:8]) <= 45:
+        timer.setStyleSheet('color: rgb(0,0,0)')
+    if 0 < int(time3.toString('hh:mm:ss')[6:8]) <= 15:
+        timer.setStyleSheet('color: rgb(0,255,0)')
+    if time3.toString('hh:mm:ss') == '00:00:00':
+        timer___1.stop()
 
 
 
@@ -148,20 +149,6 @@ mainline2 = QVBoxLayout()
 mainline22 = QVBoxLayout() #для таймера
 mainlineh = QHBoxLayout()
 
-def timer1event():
-    global time
-    time = time.addSecs(-1)
-    timer.setText(time.toString('hh:mm:ss'))
-    timer.setFont(QFont('Times', 36, QFont.Bold))
-    if time.toString('hh:mm:ss') == '00:00:00':
-        timer___1.stop()
-
-
-
-
-
-
-
 
 timer = QLabel(txt_timer, alignment= Qt.AlignCenter)
 checkresults = QPushButton('Отправить результаты')
@@ -186,15 +173,6 @@ mainlineh.addLayout(mainline22)
 win2.setLayout(mainlineh)
 
 
-
-
-
-
-
-
-
-
-    
 
 
 app.exec_()
