@@ -47,8 +47,21 @@ app = QApplication([])
 win1 = QWidget()
 win1.resize(win_width, win_height) #Первое окно
 
+win3 = QWidget()
+win3.resize(win_width, win_height)
+
 def win2show():
     win2.show()
+def win3show():
+    win3.show()
+win3text1 = QLabel(txt_finalwin)
+win3line = QVBoxLayout()
+win3line.addWidget(win3text1, alignment= Qt.AlignHCenter)
+
+
+
+win3.setLayout(win3line)
+
 
 
 def timer1():
@@ -152,6 +165,7 @@ mainlineh = QHBoxLayout()
 
 timer = QLabel(txt_timer, alignment= Qt.AlignCenter)
 checkresults = QPushButton('Отправить результаты')
+checkresults.clicked.connect(win3show)
 mainline22.addWidget(timer,alignment= Qt.AlignCenter)
 mainline2.addWidget(text12, alignment= Qt.AlignLeft)
 mainline2.addWidget(fio, alignment= Qt.AlignLeft)
