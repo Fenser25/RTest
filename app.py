@@ -50,6 +50,10 @@ win1.resize(win_width, win_height) #Первое окно
 win3 = QWidget()
 win3.resize(win_width, win_height)
 
+
+
+
+
 def win2show():
     win2.show()
 def win3show():
@@ -143,7 +147,7 @@ win2.resize(win_width, win_height)
 text12 = QLabel(txt_name)
 fio = QLineEdit(txt_hintname)
 text22 = QLabel(txt_age)
-age = QLineEdit(txt_hinttest1)
+age1 = QLineEdit(txt_hinttest1)
 text32 = QLabel(txt_hinttest1)
 test1startbttn = QPushButton(txt_starttest1) #начинает тест 1
 test1startbttn.clicked.connect(timer1)
@@ -185,6 +189,74 @@ mainlineh.addLayout(mainline2)
 mainlineh.addLayout(mainline22)
 
 win2.setLayout(mainlineh)
+
+age = age1.text() 
+res1 = int(test1result.text())
+res2 = int(test3result1.text())
+res3 = int(test3result2.text())
+index = (4*(res1 + res2 + res3) - 200)/10
+def results123():
+       if age < 7:
+           index = 0
+           return "нет данных для такого возраста"
+       index = (4 * (int(t1) + int(t2) + int(t3)) - 200) / 10
+       if age == 7 or age == 8:
+           if index >= 21:
+               return txt_res1
+           elif index < 21 and index >= 17:
+               return txt_res2
+           elif index < 17 and index >= 12:
+               return txt_res3
+           elif index < 12 and index >= 6.5:
+               return txt_res4
+           else:
+               return txt_res5
+       if age == 9 or age == 10:
+           if index >= 19.5:
+               return txt_res1
+           elif index < 19.5 and index >= 15.5:
+               return txt_res2
+           elif index < 15.5 and index >= 10.5:
+               return txt_res3
+           elif index < 10.5 and index >= 5:
+               return txt_res4
+           else:
+               return txt_res5
+       if age == 11 or age == 12:
+           if index >= 18:
+               return txt_res1
+           elif index < 18 and index >= 14:
+               return txt_res2
+           elif index < 14 and index >= 9:
+               return txt_res3
+           elif index < 9 and index >= 3.5:
+               return txt_res4
+           else:
+               return txt_res5
+       if age == 13 or age == 14:
+           if index >= 16.5:
+               return txt_res1
+           elif index < 16.5 and index >= 12.5:
+               return txt_res2
+           elif index < 12.5 and index >= 7.5:
+               return txt_res3
+           elif index < 7.5 and index >= 2:
+               return txt_res4
+           else:
+               return txt_res5
+       if age >= 15:
+           if index >= 15:
+               return txt_res1
+           elif index < 15 and index >= 11:
+               return txt_res2
+           elif index < 11 and index >= 6:
+               return txt_res3
+           elif index < 6 and index >= 0.5:
+               return txt_res4
+           else:
+               return txt_res5
+
+
 
 
 
