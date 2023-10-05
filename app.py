@@ -71,7 +71,7 @@ win3line.addWidget(win3text1, alignment= Qt.AlignHCenter)
 
 
 
-win3.setLayout(win3line)
+
 
 
 
@@ -154,7 +154,7 @@ win2.resize(win_width, win_height)
 text12 = QLabel(txt_name)
 fio = QLineEdit(txt_hintname)
 text22 = QLabel(txt_age)
-age1 = QLineEdit(txt_hinttest1)
+age1 = QLineEdit(txt_hinttest1) #возраст
 text32 = QLabel(txt_test1)
 test1startbttn = QPushButton(txt_starttest1) #начинает тест 1
 test1startbttn.clicked.connect(timer1)
@@ -197,7 +197,7 @@ mainlineh.addLayout(mainline22)
 
 win2.setLayout(mainlineh)
 
-age = int(age1.text()) 
+age = int(age1.text())
 res1 = int(test1result.text())
 res2 = int(test3result1.text())
 res3 = int(test3result2.text())
@@ -274,6 +274,8 @@ win3line.addWidget(win3text2, alignment= Qt.AlignHCenter)
 win3line.addWidget(index_text, alignment= Qt.AlignHCenter)
 win3line.addWidget(win3text3, alignment= Qt.AlignHCenter)
 win3line.addWidget(workheart, alignment= Qt.AlignHCenter)
+
+win3.setLayout(win3line)
 
 
  
