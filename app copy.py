@@ -57,20 +57,15 @@ win1.resize(win_width, win_height) #Первое окно
 win3 = QWidget()
 win3.resize(win_width, win_height)
 
-final_results = 0
+
 
 
 
 def win2show():
     win2.show()
 def win3show():
-    
-    final_results = results123()
     win3.show()
     print(age1.text())
-    
-    
-
 win3text1 = QLabel(txt_finalwin)
 win3line = QVBoxLayout()
 win3line.addWidget(win3text1, alignment= Qt.AlignHCenter)
@@ -203,93 +198,83 @@ mainlineh.addLayout(mainline22)
 
 win2.setLayout(mainlineh)
 
+age = int(age1.text())
+res1 = int(test1result.text())
+res2 = int(test3result1.text())
+res3 = int(test3result2.text())
 
-index = '0'
-
-def results123():
-       age = int(age1.text())
-       print(age)
-       res1 = int(test1result.text())
-       res2 = int(test3result1.text())
-       res3 = int(test3result2.text())
+def results123(age, res1, res2, res3):
        global index
        index = (4*(res1 + res2 + res3) - 200)/10
-       win3text2 = QLabel(str(txt_index))
-       win3text3 = QLabel(str(txt_workheart))
-
-
-       workheart = QLabel()
-       index_text = QLabel(str(index))
-       win3line.addWidget(win3text2, alignment= Qt.AlignHCenter)
-       win3line.addWidget(index_text, alignment= Qt.AlignHCenter)
-       win3line.addWidget(win3text3, alignment= Qt.AlignHCenter)
-       win3line.addWidget(workheart, alignment= Qt.AlignHCenter)
        if age < 7:
            index = 0
            return "нет данных для такого возраста"
        
        if age == 7 or age == 8:
            if index >= 21:
-               workheart.setText(txt_res1)
+               return txt_res1
            elif index < 21 and index >= 17:
-               workheart.setText(txt_res2)
+               return txt_res2
            elif index < 17 and index >= 12:
-               workheart.setText(txt_res3)
+               return txt_res3
            elif index < 12 and index >= 6.5:
-               workheart.setText(txt_res4)
+               return txt_res4
            else:
-               workheart.setText(txt_res5)
+               return txt_res5
        if age == 9 or age == 10:
            if index >= 19.5:
-               workheart.setText(txt_res1)
+               return txt_res1
            elif index < 19.5 and index >= 15.5:
-               workheart.setText(txt_res2)
+               return txt_res2
            elif index < 15.5 and index >= 10.5:
-               workheart.setText(txt_res3)
+               return txt_res3
            elif index < 10.5 and index >= 5:
-               workheart.setText(txt_res4)
+               return txt_res4
            else:
-               workheart.setText(txt_res5)
+               return txt_res5
        if age == 11 or age == 12:
            if index >= 18:
-               workheart.setText(txt_res1)
+               return txt_res1
            elif index < 18 and index >= 14:
-               workheart.setText(txt_res2)
+               return txt_res2
            elif index < 14 and index >= 9:
-               workheart.setText(txt_res3)
+               return txt_res3
            elif index < 9 and index >= 3.5:
-               workheart.setText(txt_res4)
+               return txt_res4
            else:
-               workheart.setText(txt_res5)
+               return txt_res5
        if age == 13 or age == 14:
            if index >= 16.5:
-               workheart.setText(txt_res1)
+               return txt_res1
            elif index < 16.5 and index >= 12.5:
-               workheart.setText(txt_res2)
+               return txt_res2
            elif index < 12.5 and index >= 7.5:
-               workheart.setText(txt_res3)
+               return txt_res3
            elif index < 7.5 and index >= 2:
-               workheart.setText(txt_res4)
+               return txt_res4
            else:
-               workheart.setText(txt_res5)
+               return txt_res5
        if age >= 15:
            if index >= 15:
-               workheart.setText(txt_res1)
+               return txt_res1
            elif index < 15 and index >= 11:
-               workheart.setText(txt_res2)
+               return txt_res2
            elif index < 11 and index >= 6:
-               workheart.setText(txt_res3)
+               return txt_res3
            elif index < 6 and index >= 0.5:
-               workheart.setText(txt_res4)
+               return txt_res4
            else:
-               workheart.setText(txt_res5)
-       win3line.addWidget(win3text2, alignment= Qt.AlignHCenter)
-       win3line.addWidget(index_text, alignment= Qt.AlignHCenter)
-       win3line.addWidget(win3text3, alignment= Qt.AlignHCenter)
-       win3line.addWidget(workheart, alignment= Qt.AlignHCenter)
+               return txt_res5
 
-
-
+win3text2 = QLabel(str(txt_index))
+win3text3 = QLabel(str(txt_workheart))
+final_results = results123(age, res1, res2, res3)
+workheart = QLabel(str(final_results))
+index_text = QLabel(str(index))
+win3line.addWidget(win3text2, alignment= Qt.AlignHCenter)
+win3line.addWidget(index_text, alignment= Qt.AlignHCenter)
+win3line.addWidget(win3text3, alignment= Qt.AlignHCenter)
+win3line.addWidget(workheart, alignment= Qt.AlignHCenter)
 
 win3.setLayout(win3line)
 
